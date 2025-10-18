@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KRATER MC — Regelwerk</title>
+
+  <style>
+    :root{
+      --bg:#071022;
+      --panel:#0e1724;
+      --accent:#ff7a18;
+      --muted:#9aa6b2;
+      --card:#0b1220;
+      --glass: rgba(255,255,255,0.03);
+      --maxw:980px;
+    }
+
+    /* Reset & basics */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,var(--bg),#06121a 60%); color:#eaf6ff;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}
+
+    /* Layout */
+    .wrap{max-width:var(--maxw);margin:36px auto;padding:18px;}
+    header{display:flex;align-items:center;gap:18px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)}
+    .brand{display:flex;align-items:center;gap:14px}
+    .title{font-weight:800;letter-spacing:1px}
+    .title .main{font-family: ui-rounded, "Segoe UI", Roboto, "Helvetica Neue", Arial;font-size:20px;color:var(--accent)}
+    .title .sub{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+
+    main{display:block;margin-top:20px;display:grid;grid-template-columns:1fr;gap:18px}
+    .card{background:var(--card);padding:18px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+
+    /* Rules layout */
+    .section-title{color:var(--accent);font-weight:700;margin:0 0 12px 0;font-size:16px}
+    .rules-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+    .rule{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      padding:12px 14px;border-radius:8px;border-left:4px solid var(--accent);
+      display:flex;flex-direction:column;gap:6px;
+    }
+    .rule h3{margin:0;font-size:14px}
+    .rule p{margin:0;color:var(--muted);font-size:13px}
+
+    /* tiny meta row */
+    .meta{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px;margin-top:8px}
+    .meta .pill{background:rgba(255,255,255,0.02);padding:6px 8px;border-radius:999px;border:1px solid rgba(255,255,255,0.02)}
+
+    /* footer */
+    footer{margin-top:16px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (min-width:900px){
+      main{grid-template-columns: 1fr 360px}
+      .preview-card{height:100%}
+    }
+
+    /* small helper for copy button */
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{
+      background:linear-gradient(180deg,var(--accent),#ff4b00);border:none;color:#041019;padding:8px 10px;border-radius:8px;font-weight:700;cursor:pointer;
+      box-shadow:0 6px 18px rgba(255,122,24,0.12)
+    }
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);font-weight:600;padding:7px 10px;border-radius:8px;cursor:pointer}
+    .small{font-size:13px;padding:6px 8px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand" aria-hidden="true">
+        <!-- SVG Logo: stilisierter Krater / Pixel-Icon -->
+        <svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Krater MC Logo">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#ffd48b"/>
+              <stop offset="1" stop-color="#ff6a1a"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1">
+              <stop offset="0" stop-color="#0d3b57"/>
+              <stop offset="1" stop-color="#062431"/>
+            </linearGradient>
+            <filter id="f1" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+            </filter>
+          </defs>
+
+          <!-- background circle -->
+          <circle cx="36" cy="36" r="34" fill="url(#g2)"/>
+
+          <!-- crater glow -->
+          <g filter="url(#f1)">
+            <ellipse cx="36" cy="38" rx="16" ry="8" fill="url(#g1)" opacity="0.95"/>
+          </g>
+
+          <!-- pixel blocks around crater -->
+          <g transform="translate(0,0)" fill="#0b1220">
+            <rect x="18" y="18" width="6" height="6" rx="1"/>
+            <rect x="48" y="18" width="6" height="6" rx="1"/>
+            <rect x="12" y="36" width="6" height="6" rx="1"/>
+            <rect x="54" y="36" width="6" height="6" rx="1"/>
+            <rect x="24" y="48" width="6" height="6" rx="1"/>
+            <rect x="42" y="48" width="6" height="6" rx="1"/>
+          </g>
+
+          <!-- inner crater hole -->
+          <ellipse cx="36" cy="40" rx="10" ry="5" fill="#0a0f12"/>
+          <circle cx="36" cy="34" r="3" fill="#ffb26b" opacity="0.95"/>
+        </svg>
+      </div>
+
+      <div class="title" style="flex:1">
+        <span class="main">KRATER MC</span>
+        <span class="sub">Regelwerk — klar, sauber, kopierbar</span>
+      </div>
+
+      <div style="min-width:180px;text-align:right">
+        <div class="controls">
+          <button class="btn small" id="btnCopyText" title="Regeln als Klartext kopieren">Kopiere Regeln</button>
+          <button class="btn-ghost small" id="btnCopyHtml" title="Als HTML kopieren">Kopiere HTML</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Links: die eigentlichen Regeln -->
+      <section class="card">
+        <h2 class="section-title">Regeln (kurz & klar)</h2>
+
+        <ul class="rules-list" id="rulesList">
+          <li class="rule">
+            <h3>Respekt</h3>
+            <p>Respektiere alle Spieler und Teammitglieder. Beleidigungen oder Diskriminierung werden bestraft.</p>
+          </li>
+
+          <li class="rule">
+            <h3>Kein Griefing</h3>
+            <p>Das mutwillige Zerstören fremder Bauten ist verboten. Wiederherstellungskosten können verlangt werden.</p>
+          </li>
+
+          <li class="rule">
+            <h3>PvP-Regeln</h3>
+            <p>PvP ist nur in markierten Zonen erlaubt. Spawn-Killing oder Camping wird geahndet.</p>
+          </li>
+
+          <li class="rule">
+            <h3>Cheaten & Hacks</h3>
+            <p>Alle Cheats, Exploits oder unerlaubte Modifikationen sind verboten. Sperren werden ohne Vorwarnung ausgesprochen.</p>
+          </li>
+
+          <li class="rule">
+            <h3>Bug-Exploitation</h3>
+            <p>Das Ausnutzen von Bugs oder Glitches ist untersagt — bitte sofort dem Team melden.</p>
+          </li>
+        </ul>
+
+        <div class="meta" style="margin-top:12px">
+          <div class="pill">Stand: 2025</div>
+          <div class="pill">Kontakt: <a href="#" id="discordLink">Discord</a></div>
+        </div>
+      </section>
+
+      <!-- Rechts: kompakte Vorschau / Beschreibung -->
+      <aside class="card preview-card" aria-labelledby="previewHeading">
+        <h3 id="previewHeading" class="section-title">Kurzinfo</h3>
+        <p style="color:var(--muted);margin:0 0 10px 0">Diese Seite ist minimal gehalten: klare Abschnitte, einfache Lesbarkeit und ein kleines SVG-Logo. Du kannst Regeln direkt markieren und kopieren — oder die komplette HTML-Struktur per Knopf in die Zwischenablage legen.</p>
+
+        <div style="margin-top:12px">
+          <strong style="display:block;margin-bottom:6px">Tipps</strong>
+          <ul style="color:var(--muted);padding-left:18px;margin:0">
+            <li>Für größere Regelwerke: nach Kategorien trennen.</li>
+            <li>Verlinke Discord/Forum für Support-Anfragen.</li>
+            <li>Ändere Farben im :root für eigenes Branding.</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      © KRATER MC — Regelwerk • Anpassbar • Einfach kopierbar
+    </footer>
+  </div>
+
+  <script>
+    // Kopier-Funktionalität: Klartext & HTML (einfach & zuverlässig)
+    (function(){
+      const btnCopyText = document.getElementById('btnCopyText');
+      const btnCopyHtml = document.getElementById('btnCopyHtml');
+      const rulesList = document.getElementById('rulesList');
+      const discordLink = document.getElementById('discordLink');
+
+      // optional: setze hier euren Discord-Link
+      discordLink.href = "https://discord.gg/deinserver"; // <- anpassen
+
+      function getPlainText(){
+        // Erstellt klaren Text, jede Regel in eigener Zeile
+        const items = Array.from(rulesList.querySelectorAll('.rule'));
+        return items.map(it => {
+          const title = it.querySelector('h3')?.textContent?.trim() || '';
+          const body = it.querySelector('p')?.textContent?.trim() || '';
+          return title ? title + ": " + body : body;
+        }).join('\\n\\n');
+      }
+
+      function getHTMLSnippet(){
+        // Kleines, sauberes HTML-Fragment, das du 1:1 einfügen kannst
+        const container = document.createElement('div');
+        container.innerHTML = `
+          <div class="krater-rules" style="max-width:900px;margin:0 auto;padding:16px;background:#0b1220;border-radius:8px;color:#eaf6ff">
+            <h2 style="color:${getComputedStyle(document.documentElement).getPropertyValue('--accent') || '#ff7a18'};font-family:inherit">KRATER MC — Regelwerk</h2>
+            ${rulesList.innerHTML}
+          </div>
+        `;
+        // inline styles für .rule sollten nicht nötig, die Zielseite kann eigene CSS haben.
+        return container.innerHTML;
+      }
+
+      btnCopyText.addEventListener('click', function(){
+        const text = getPlainText();
+        navigator.clipboard.writeText(text).then(()=> {
+          btnCopyText.textContent = 'Kopiert ✓';
+          setTimeout(()=> btnCopyText.textContent = 'Kopiere Regeln', 2000);
+        }).catch(()=> alert('Kopieren fehlgeschlagen — bitte manuell markieren.'));
+      });
+
+      btnCopyHtml.addEventListener('click', function(){
+        const html = getHTMLSnippet();
+        navigator.clipboard.writeText(html).then(()=> {
+          btnCopyHtml.textContent = 'HTML kopiert ✓';
+          setTimeout(()=> btnCopyHtml.textContent = 'Kopiere HTML', 2000);
+        }).catch(()=> alert('Kopieren fehlgeschlagen — bitte manuell markieren.'));
+      });
+    })();
+  </script>
+</body>
+</html>
